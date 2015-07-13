@@ -36,12 +36,6 @@ if($wybor[$i]==0){
 }
 }
 fclose($stdin);
-echo $wybor[1];
-echo $wybor[2];
-echo $wybor[3];
-echo $wybor[4];
-echo $p1;
-echo $p2;
 }
 while($p1==0 || $p2==0);
 $zmienna3=new potwor($wybor2[1],$wybor2[2],$wybor2[3],$wybor2[4]);
