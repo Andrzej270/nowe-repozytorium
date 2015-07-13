@@ -7,6 +7,9 @@ require_once('eliksirsila.php');
 require_once('Potwor.php');
 require_once('tura.php');
 require_once('Wiedzmin.php');
+do{
+$p1=1;
+$p2=1;	
 $stdout = fopen('php://stdout', 'w');
 fwrite($stdout, "wybierz cztery parametry potwora(jeden po drugim) ");
 fclose($stdout);
@@ -14,9 +17,12 @@ $stdin = fopen('php://stdin', 'r');
 $wybor2=array();
 for($i=1; $i<5; $i++){
 $wybor2[$i]=fgetc($stdin);
+if($wybor2[$i]==0){
+	echo "\nbrak parametru potwora\n";
+	$p1=0;
+}
 }
 fclose($stdin);
-$zmienna3=new potwor($wybor2[1],$wybor2[2],$wybor2[3],$wybor2[4]);
 $stdout = fopen('php://stdout', 'w');
 fwrite($stdout, "wybierz cztery parametry wiedzmina(jeden po drugim) ");
 fclose($stdout);
@@ -24,8 +30,21 @@ $stdin = fopen('php://stdin', 'r');
 $wybor=array();
 for($i=1; $i<5; $i++){
 $wybor[$i]=fgetc($stdin);
+if($wybor[$i]==0){
+	echo "\nbrak parametru wiedzmna\n";
+	$p2=0;
+}
 }
 fclose($stdin);
+echo $wybor[1];
+echo $wybor[2];
+echo $wybor[3];
+echo $wybor[4];
+echo $p1;
+echo $p2;
+}
+while($p1==0 || $p2==0);
+$zmienna3=new potwor($wybor2[1],$wybor2[2],$wybor2[3],$wybor2[4]);
 $zmienna2=new Wiedzmin($wybor[1],$wybor[2],$wybor[3],$wybor[4]);
 $koniec=false;
 $zmienna= new tura($zmienna2,$zmienna3);
