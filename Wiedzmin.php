@@ -50,8 +50,14 @@ use osobatrait;
 	 $this->punktyakcji=$this->punktyakcji-$poziom-1;  
    }
  public function wypijeliksir(){
-	 $this->eliksir->dzialanie();
-	 --$this->punktyakcji;
+	 if($this->punktyakcji<=0){
+			 echo"zamało punktów akcji zakończ turę";
+			 
+		 }else{
+			 $this->eliksir->dzialanie();
+			 --$this->punktyakcji;
+			 }
+	 
  }
 	
 	private function skutecznosc($pzrecznosc){
@@ -67,9 +73,13 @@ use osobatrait;
 	}
 	
 	public function obrona(){
-		$this->punktyakcji=$this->punktyakcji+2;
+		if($this->zatak==1){
+			echo"w tej turze juz atakowales więc nie mozesz sie bronic";
+		}else{
+		$this->punktyakcji=$this->punktyakcji+1;
 		$this->zrecznosc=$this->zrecznosc+$this->zrecznosc/2;
 		$this->obrona=1;
+		}
 	}
 	public function aktywne(){
 		if($this->obrona==1 && $this->tura==1){
@@ -81,17 +91,32 @@ use osobatrait;
 		}
 	}
 	
-	public function atak($pzrecznosc){
-		--$this->punktyakcji;
+	public function atak($potwor,$pzrecznosc){
 		$this->skutecznosc($pzrecznosc);
-		if(rand(1,100)>=$this->sk){
-		  return true;
+		if(rand(1,100)>=$this->sk && $this->punktyakcji>0){
+		  --$this->punktyakcji;
+		  $potwor->trafiony();
+		  echo"\n Potwor trafiony\n";
 		}
-		
+		elseif($this->punktyakcji<=0){
+			echo"\nZa malo punktow akcji\n";
+		}
+		else{
+			--$this->punktyakcji;
+			echo"\n Pudlo \n";
+			}
+		$this->zatak=1;
 	}
-	
+	 public function punktyakcji(){
+		 if($this->punktyakcji<=0){
+			 echo"za malo punktów akcji zakończ turę";
+			 
+		 }
+		 
+	 }
 
      public function koniectury(){
+		 $this->zatak=0;
 		 ++$this->turn;
 		 ++$this->punktyakcji;
 		 
