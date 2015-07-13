@@ -56,13 +56,17 @@ public function ustawkolej(){
 public function punktyakcji(){
 		if($this->wiedzmin->getszybkosc() > $this->potwor->getszybkosc()){
 		$punkty=$this->wiedzmin->getszybkosc()/$this->potwor->getszybkosc();
-		$wynik=$this->wiedzmin->getpktakcji()*$punkty;
-		$this->wiedzmin->setpktakcji($wynik);
+		$punkty=floor($punkty);
+		--$punkty;
+		$punkty=$this->wiedzmin->getpktakcji()+$punkty;
+		$this->wiedzmin->setpktakcji($punkty);
 		}
 		elseif($this->wiedzmin->getszybkosc() < $this->potwor->getszybkosc()){
 	    $punkty=$this->potwor->getszybkosc()/$this->wiedzmin->getszybkosc();
-		$wynik=$this->potwor->getpktakcji()*$punkty;
-		$this->potwor->setpktakcji($wynik);
+		$punkty=floor($punkty);
+		--$punkty;
+		$punkty=$this->potwor->getpktakcji()+$punkty;
+		$this->potwor->setpktakcji($punkty);
 		}
 	
 }
