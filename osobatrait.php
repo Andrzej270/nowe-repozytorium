@@ -19,6 +19,7 @@ trait osobatrait{
  
  private $turn;
  
+ private $zatak=0;
  
  abstract public function __toString();
   
