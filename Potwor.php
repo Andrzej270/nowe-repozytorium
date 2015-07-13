@@ -37,13 +37,20 @@ public function __construct($szybkosc,$sila,$zrecznosc,$zycie){
 		
 	}
 	
-	public function atak($zrecznosc){
-		--$this->punktyakcji;
-		$this->skutecznosc($zrecznosc);
+	
+	public function atak($wiedzmin,$pzrecznosc){
+		$this->skutecznosc($pzrecznosc);
+		do{
 		if(rand(1,100)>=$this->sk){
-		  return true;
+		  --$this->punktyakcji;
+		  $wiedzmin->trafiony();
+		  echo"\n Wiedzmin trafiony\n";
 		}
-		
+		else{
+			--$this->punktyakcji;
+			echo"\n Pudlo \n";
+			}
+		}while($this->punktyakcji>0);
 	}
 	public function koniectury(){
 		 ++$this->punktyakcji;
@@ -52,3 +59,4 @@ public function __construct($szybkosc,$sila,$zrecznosc,$zycie){
 	 
 }
 ?>
+
