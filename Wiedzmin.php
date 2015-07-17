@@ -51,7 +51,7 @@ use osobatrait;
    }
  public function wypijeliksir(){
 	 if($this->punktyakcji<=0){
-			 echo"zamało punktów akcji zakończ turę";
+			 echo"zamalo punktow akcji zakoncz ture";
 			 
 		 }else{
 			 $this->eliksir->dzialanie();
@@ -74,11 +74,13 @@ use osobatrait;
 	
 	public function obrona(){
 		if($this->zatak==1){
-			echo"w tej turze juz atakowales więc nie mozesz sie bronic";
+			echo"\nw tej turze juz atakowales wiec nie mozesz sie bronic\n";
+			return 0;
 		}else{
 		$this->punktyakcji=$this->punktyakcji+1;
 		$this->zrecznosc=$this->zrecznosc+$this->zrecznosc/2;
 		$this->obrona=1;
+		return 1;
 		}
 	}
 	public function aktywne(){
@@ -109,7 +111,7 @@ use osobatrait;
 	}
 	 public function punktyakcji(){
 		 if($this->punktyakcji<=0){
-			 echo"za malo punktów akcji zakończ turę";
+			 echo"za malo punktow akcji zakoncz ture";
 			 
 		 }
 		 
