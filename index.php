@@ -70,7 +70,7 @@ $wyn=array();
 $wyn=pobranie($tekst4,1);
 $poziom=$wyn[1];
 switch($poziom){
-case 1-3:
+case $poziom>=1 && $poziom<=3:
 if($zmienna2->getpktakcji()>=$poziom+1){
 $typ=$zmienna2->utwurzeliksir();
 $eliksir=new $typ($poziom,$zmienna2);
@@ -80,15 +80,16 @@ echo"\nEliksir utworzony\n";
 else{echo"za malo punktow akcji";}
 break;
 default:
-echo"Podaj cyfre z przedziału 1-3";
+echo"\nPodaj cyfre z przedzialu 1-3\n";
 break;
 }	
 break;
 
 
 case"c":
+if($zmienna2->getpktakcji()>=1){
 $zmienna2->wypijeliksir();
-echo"\nEliksir wypity\n";
+echo"\nEliksir wypity\n";}
 break;
 
 case"d":
